@@ -10,7 +10,7 @@ const express = require("express"),
   methodOverride = require("method-override");
 
 const Job = require("./models/job"),
-//   Comment = require("./models/comment"),
+//   Comment = require("./models/comment"), bla bla
   User = require("./models/user");
 
 const { db_user, db_pwd, db_host, db_name } = require("./config");
