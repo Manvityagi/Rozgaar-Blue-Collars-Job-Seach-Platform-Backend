@@ -26,16 +26,25 @@ router.post("/register", function (req, res, next) {
 
 //handle login logic
 //app.post("/login", middleware, callback)
-router.post(
-  "/login",
-  passport.authenticate("local", {
-    successRedirect: "/jobs",
-    successFlash: "Welcome to YelpCamp!",
-    failureFlash: true,
-    failureRedirect: "/login",
-  }),
-  function (req, res) {}
-);
+router.post("/login", function (req, res, next) {
+  passport.authenticate("local", function (err, user) {
+    if (err) {
+      res.sendStatus(500);
+    }
+    if (!user) {
+      res.sendStatus(401);
+    }
+
+    // make passportjs setup the user object, serialize the user, ...
+    req.login(user, {}, function (err) {
+      if (err) {
+        res.sendStatus(500);
+      }
+      res.sendStatus(200);
+    });
+  })(req, res, next);
+  return;
+});
 
 //logout route
 router.get("/logout", function (req, res) {

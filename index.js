@@ -9,9 +9,9 @@ const express = require("express"),
   LocalStrategy = require("passport-local"),
   methodOverride = require("method-override");
 
-const Job = require("./models/job");
+const Job = require("./models/job"),
 //   Comment = require("./models/comment"),
-//   User = require("./models/user"),
+  User = require("./models/user");
 
 const { db_user, db_pwd, db_host, db_name } = require("./config");
 
@@ -58,19 +58,17 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-// passport.use(new LocalStrategy(User.authenticate()));
-// passport.serializeUser(User.serializeUser()); //setting id as cookie in user’s browser
-// passport.deserializeUser(User.deserializeUser()); //getting id from the cookie,
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser()); //setting id as cookie in user’s browser
+passport.deserializeUser(User.deserializeUser()); //getting id from the cookie,
 
 //to pass currentuser to every route
 //middleware, whatever function we provide to it will be called on every route
 app.use(function (req, res, next) {
-  //console.log(`req.user: ${req.user}`);
+  console.log(`req.user: ${req.user}`);
   //pass that req.user to every single template
   //whatever we put in res.locals is whats available inside of our template
   res.locals.currentUser = req.user;
-  res.locals.error = req.flash("error");
-  res.locals.success = req.flash("success");
   next();
 });
 
