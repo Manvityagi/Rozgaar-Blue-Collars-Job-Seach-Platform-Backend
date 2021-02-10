@@ -17,8 +17,8 @@ const { db_user, db_pwd, db_host, db_name } = require("./config");
 
 //requiring routes
 // const commentRoutes = require("./routes/comments"),
-const jobRoutes = require("./routes/jobs");
-//   indexRoutes = require("./routes/index");
+const jobRoutes = require("./routes/jobs"),
+  indexRoutes = require("./routes/index");
 
 const mongoSrvString = `mongodb+srv://${db_user}:${db_pwd}@${db_host}/${db_name}?retryWrites=true&w=majority`;
 
@@ -37,7 +37,6 @@ const db = mongoose
   .catch((err) => {
     console.log("Couldn't connect to mongo db, err: ", err);
   });
-
 
 // in order to read HTTP POST data , we have to use "body-parser" node module. body-parser is a piece of express middleware that reads a form's input and stores it as a javascript object accessible through req.body
 app.use(bodyParser.urlencoded({ extended: true })); //middleware for parsing bodies from URL.
@@ -75,7 +74,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-// app.use(indexRoutes);
+app.use(indexRoutes);
 app.use("/jobs", jobRoutes);
 // app.use("/jobs/:id/comments", commentRoutes);
 

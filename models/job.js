@@ -22,6 +22,7 @@ var jobSchema = new mongoose.Schema({
   description: String,
   offeredSalary: Number,
   numberOfPositions: Number,
+  deadline: Date,
   //   author: {
   //     id: {
   //       type: mongoose.Schema.Types.ObjectId,

@@ -1,7 +1,6 @@
 var express = require("express"),
   router = express.Router(),
   Job = require("../models/job"),
-  Comment = require("../models/comment"),
   passport = require("passport"),
   User = require("../models/user");
 
