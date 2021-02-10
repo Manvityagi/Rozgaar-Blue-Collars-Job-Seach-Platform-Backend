@@ -8,10 +8,6 @@ var express = require("express"),
 
 router.use(methodOverride("_method"));
 
-router.get("/test", function (req, res) {
-  res.json(["Tony", "Lisa", "Michael", "Ginger", "Food"]);
-});
-
 //INDEX - show all jobs
 router.get("/", function (req, res) {
   // console.log(`query string: ${req.query.CATEGORY}`)
