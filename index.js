@@ -62,7 +62,6 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser()); //setting id as cookie in user’s browser
 passport.deserializeUser(User.deserializeUser()); //getting id from the cookie,
 
-//to pass currentuser to every route
 //middleware, whatever function we provide to it will be called on every route
 app.use(function (req, res, next) {
   console.log(`req.user: ${req.user}`);
