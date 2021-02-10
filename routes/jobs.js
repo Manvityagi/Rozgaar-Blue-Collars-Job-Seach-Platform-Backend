@@ -8,21 +8,22 @@ var express = require("express"),
 
 router.use(methodOverride("_method"));
 
-router.get("/", function (req, res) {
+router.get("/test", function (req, res) {
   res.json(["Tony", "Lisa", "Michael", "Ginger", "Food"]);
 });
 
 //INDEX - show all jobs
 router.get("/", function (req, res) {
-  Job.find({}, function (err, alljobs) {
+  // console.log(`query string: ${req.query.CATEGORY}`)
+  const category = req.query.CATEGORY;
+  Job.find({ category: category }, function (err, alljobs) {
     if (err) {
-      res.send(err);
-      //   res.sendStatus(500); //not sending any message
+      res.sendStatus(500); //not sending any message
     } else {
-      res.render("jobs/index", {
+      const result = {
         jobs: alljobs,
-        currentUser: req.user,
-      });
+      };
+      res.send(result);
     }
   });
 });
@@ -30,7 +31,7 @@ router.get("/", function (req, res) {
 // //CREATE - add new job to DB
 router.post("/", function (req, res) {
   // get data from form and add to jobs array
-  
+
   console.log(req.body);
   const {
     title,
@@ -55,7 +56,7 @@ router.post("/", function (req, res) {
     if (err) {
       res.send(err);
     } else {
-      console.log("making job")
+      console.log("making job");
       res.send(newJob); //or simply res.sendstatus(200)
     }
   });

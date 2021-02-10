@@ -4,10 +4,6 @@ var express = require("express"),
   passport = require("passport"),
   User = require("../models/user");
 
-router.get("/", function (req, res) {
-  res.render("landing");
-});
-
 //========AUTH ROUTES===========//
 
 //handle sign up logic
@@ -25,7 +21,6 @@ router.post("/register", function (req, res, next) {
 });
 
 //handle login logic
-//app.post("/login", middleware, callback)
 router.post("/login", function (req, res, next) {
   passport.authenticate("local", function (err, user) {
     if (err) {
