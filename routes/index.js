@@ -4,7 +4,7 @@ var express = require("express"),
   passport = require("passport"),
   User = require("../models/user");
 
-//========AUTH ROUTES===========//
+//=========AUTH ROUTES===========//
 
 //handle sign up logic
 router.post("/register", function (req, res, next) {
