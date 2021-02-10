@@ -73,7 +73,7 @@ app.use(function (req, res, next) {
 
 app.use(indexRoutes);
 app.use("/jobs", jobRoutes);
-// app.use("/jobs/:id/comments", commentRoutes);
+//// app.use("/jobs/:id/comments", commentRoutes);
 
 const port = process.env.PORT || 3030;
 app.listen(port, function () {
