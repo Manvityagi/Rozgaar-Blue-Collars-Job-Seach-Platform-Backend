@@ -63,7 +63,6 @@ passport.serializeUser(User.serializeUser()); //setting id as cookie in user’s
 passport.deserializeUser(User.deserializeUser()); //getting id from the cookie,
 
 //to pass currentuser to every route
-//middleware, whatever function we provide to it will be called on every route
 app.use(function (req, res, next) {
   console.log(`req.user: ${req.user}`);
   //pass that req.user to every single template
