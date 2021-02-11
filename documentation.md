@@ -1,5 +1,6 @@
 #### Problems in Existing Solutions
-- Little Less user friendly for maybe not so literate people 
+
+- Little Less user friendly for maybe not so literate people
 - Complicated Process - Blue Collars dont have a resume.
 - All in English
 - Lack of Support on chat/call
@@ -56,8 +57,14 @@ title: String,
   numberOfPositions: Number
 ```
 
-2.  Register/signup API -
-    `POST - https://pacific-taiga-02637.herokuapp.com/register`
+2. Get jobs as per category - CATEGORY needed in query params in request from frontend
+   `GET - https://pacific-taiga-02637.herokuapp.com/jobs/?CATEGORY=ELECTRICIAN`
+
+3. APPLY - This API has to be hit when user clicks on apply
+   `POST - https://pacific-taiga-02637.herokuapp.com/jobs/:job_id/apply`
+
+4. Register/signup API -
+   `POST - https://pacific-taiga-02637.herokuapp.com/register`
 
 ```
 req.body
@@ -65,7 +72,7 @@ username: String,
 password: String
 ```
 
-3. Login API -
+5. Login API -
    `POST - https://pacific-taiga-02637.herokuapp.com/login `
 
 ```
@@ -74,17 +81,12 @@ username: String,
 password: String
 ```
 
-4. Logout API
+6. Logout API
    `GET - https://pacific-taiga-02637.herokuapp.com/logout`
-
-5. Get jobs as per category - CATEGORY needed in query params in request from frontend
-   `GET - https://pacific-taiga-02637.herokuapp.com/jobs/?CATEGORY=ELECTRICIAN`
-
-6. APPLY - This API has to be hit when user clicks on apply
-   `POST - https://pacific-taiga-02637.herokuapp.com/jobs/:job_id/apply`
 
 PENDING APIS:
 
 1. Patch API for updating user profile
 2. GET - /jobs/<:job_id>/applicants - Will return applicants of a job with job_id
-   GET - /user/<:user_id>/applied_jobs - Will return jobs to which user_id applied
+3. GET - /user/<:user_id>/applied_jobs - Will return jobs to which user_id applied
+and a few more..will add soon
