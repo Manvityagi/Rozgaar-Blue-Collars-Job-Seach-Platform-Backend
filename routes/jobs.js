@@ -44,7 +44,7 @@ router.post("/", function (req, res) {
     description,
     offeredSalary,
     numberOfPositions,
-    author: { id: req.user._id, username: req.user.username },
+    // author: { id: req.user._id, username: req.user.username },
   };
   // Create a new job and save to DB
   Job.create(newJob, function (err, newlyCreated) {
