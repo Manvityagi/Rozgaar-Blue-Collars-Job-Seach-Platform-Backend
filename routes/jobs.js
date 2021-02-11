@@ -27,7 +27,8 @@ router.get("/", function (req, res) {
 // //CREATE - add new job to DB
 router.post("/", function (req, res) {
   // get data from form and add to jobs array
-  // console.log(req.body);
+  // console.log("making job seeee", req.body);
+
   const {
     title,
     category,
@@ -49,6 +50,7 @@ router.post("/", function (req, res) {
   // Create a new job and save to DB
   Job.create(newJob, function (err, newlyCreated) {
     if (err) {
+      console.log(err);
       res.send(err);
     } else {
       // console.log("making job");

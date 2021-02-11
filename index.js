@@ -38,12 +38,12 @@ const db = mongoose
   });
 
 // in order to read HTTP POST data , we have to use "body-parser" node module. body-parser is a piece of express middleware that reads a form's input and stores it as a javascript object accessible through req.body
-app.use(bodyParser.urlencoded({ extended: true })); //middleware for parsing bodies from URL.
+// app.use(bodyParser.urlencoded({ extended: true })); //middleware for parsing bodies from URL.
+app.use(bodyParser.json());
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method")); //to support HTTP Verbs other than GET,POST
 app.use(flash());
-
 
 //PASSPORT CONFIGURATION
 app.use(
@@ -62,7 +62,7 @@ passport.deserializeUser(User.deserializeUser()); //getting id from the cookie,
 
 //middleware, whatever function we provide to it will be called on every route
 app.use(function (req, res, next) {
-  console.log(`req.user: ${req.user}`);
+  // console.log(`req.user: ${req.user}`);
   //pass that req.user to every single template
   //whatever we put in res.locals is whats available inside of our template
   res.locals.currentUser = req.user;
