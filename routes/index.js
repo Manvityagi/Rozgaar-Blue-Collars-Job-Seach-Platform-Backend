@@ -11,11 +11,11 @@ router.post("/register", function (req, res, next) {
   var newUser = new User({ username: req.body.username });
   User.register(newUser, req.body.password, function (err, user) {
     if (err) {
-      res.status(500);
+      res.sendStatus(500);
       return next(err);
     }
     passport.authenticate("local")(req, res, function () {
-      res.sendStatus(200);
+      return res.sendStatus(200);
     });
   });
 });
@@ -44,8 +44,7 @@ router.post("/login", function (req, res, next) {
 //logout route
 router.get("/logout", function (req, res) {
   req.logout();
-  req.flash("success", "Logged you out!");
-  res.redirect("/jobs");
+  res.status(200).send("Logged you out");
 });
 
 module.exports = router;

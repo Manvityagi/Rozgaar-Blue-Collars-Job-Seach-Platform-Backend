@@ -7,10 +7,11 @@ const express = require("express"),
   flash = require("connect-flash"),
   passport = require("passport"),
   LocalStrategy = require("passport-local"),
-  methodOverride = require("method-override");
-
+  methodOverride = require("method-override"),
+  cors = require("cors");
+app.use(cors());
 const Job = require("./models/job"),
-//   Comment = require("./models/comment"), bla bla
+  //   Comment = require("./models/comment"), bla bla
   User = require("./models/user");
 
 const { db_user, db_pwd, db_host, db_name } = require("./config");

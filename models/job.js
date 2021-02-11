@@ -23,13 +23,13 @@ var jobSchema = new mongoose.Schema({
   offeredSalary: Number,
   numberOfPositions: Number,
   deadline: Date,
-  //   author: {
-  //     id: {
-  //       type: mongoose.Schema.Types.ObjectId,
-  //       ref: "JobPoster",
-  //     },
-  //     username: String,
+  // author: {
+  //   id: {
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: "User",
   //   },
+  //   username: String,
+  // },
 });
 
 module.exports = mongoose.model("Job", jobSchema);

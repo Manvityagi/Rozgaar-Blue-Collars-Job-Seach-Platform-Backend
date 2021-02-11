@@ -3,8 +3,8 @@ var express = require("express"),
   Job = require("../models/job"),
   //   Comment = require("../models/comment"),
   methodOverride = require("method-override"),
-  mongoose = require("mongoose");
-//   middleware = require("../middleware");
+  mongoose = require("mongoose"),
+  middleware = require("../middlewares");
 
 router.use(methodOverride("_method"));
 
@@ -58,6 +58,11 @@ router.post("/", function (req, res) {
   });
 });
 
+//Apply to a job
+router.post("/:job_id", middleware.isLoggedIn, function (req, res) {
+    res.send(req.params["job_id"])
+});
+
 // //SHOW - show info about one job
 // router.get("/:id", function (req, res) {
 //   //find the cg with provided id
@@ -71,47 +76,6 @@ router.post("/", function (req, res) {
 //       }
 //     });
 //   //render show with that cg
-// });
-
-// // EDIT CAMPGROUND ROUTE
-// router.get("/:id/edit", middleware.checkJobOwnership, function (req, res) {
-//   Job.findById(req.params.id, function (err, foundJob) {
-//     if (err) {
-//       console.log(err);
-//       res.redirect("/jobs");
-//     } else {
-//       res.render("jobs/edit", { job: foundJob });
-//     }
-//   });
-// });
-
-// // UPDATE CAMPGROUND ROUTE
-// // PUT - updates job in the database
-// router.put("/:id", middleware.isLoggedIn, function (req, res) {
-//   Job.findByIdAndUpdate(
-//     req.params.id,
-//     req.body.job,
-//     function (err, updatedjob) {
-//       if (err) {
-//         res.redirect("/jobs");
-//       } else {
-//         res.redirect("/jobs/" + req.params.id);
-//       }
-//     }
-//   );
-// });
-
-// // DELETE CAMPGROUND ROUTE
-// router.delete("/:id", middleware.checkJobOwnership, function (req, res) {
-//   //destroy blog
-//   Job.findByIdAndRemove(req.params.id, function (err) {
-//     if (err) {
-//       res.redirect("/jobs");
-//     } else {
-//       res.redirect("/jobs");
-//     }
-//   });
-//   //redirect
 // });
 
 module.exports = router;
