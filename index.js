@@ -4,20 +4,15 @@ const express = require("express"),
   app = express(),
   bodyParser = require("body-parser"),
   mongoose = require("mongoose"),
-  flash = require("connect-flash"),
-  passport = require("passport"),
-  LocalStrategy = require("passport-local"),
   methodOverride = require("method-override"),
   cors = require("cors");
-app.use(cors());
-const Job = require("./models/job"),
-  User = require("./models/user");
 
 const { db_user, db_pwd, db_host, db_name } = require("./config");
 
 //requiring routes
 const jobRoutes = require("./routes/jobs"),
-  indexRoutes = require("./routes/index");
+  indexRoutes = require("./routes/index"),
+  userRoutes = require("./routes/user");
 
 const mongoSrvString = `mongodb+srv://${db_user}:${db_pwd}@${db_host}/${db_name}?retryWrites=true&w=majority`;
 
@@ -37,41 +32,17 @@ const db = mongoose
     console.log("Couldn't connect to mongo db, err: ", err);
   });
 
+app.use(cors());
 // in order to read HTTP POST data , we have to use "body-parser" node module. body-parser is a piece of express middleware that reads a form's input and stores it as a javascript object accessible through req.body
 // app.use(bodyParser.urlencoded({ extended: true })); //middleware for parsing bodies from URL.
 app.use(bodyParser.json());
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method")); //to support HTTP Verbs other than GET,POST
-app.use(flash());
-
-//PASSPORT CONFIGURATION
-app.use(
-  require("express-session")({
-    secret: "awesomeness!",
-    resave: false,
-    saveUninitialized: false, //if you set saveUninitialized to false,
-    //the session cookie will not be set on the browser unless the session is modified
-  })
-);
-app.use(passport.initialize());
-app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser()); //setting id as cookie in user’s browser
-passport.deserializeUser(User.deserializeUser()); //getting id from the cookie,
-
-//middleware, whatever function we provide to it will be called on every route
-app.use(function (req, res, next) {
-  // console.log(`req.user: ${req.user}`);
-  //pass that req.user to every single template
-  //whatever we put in res.locals is whats available inside of our template
-  res.locals.currentUser = req.user;
-  next();
-});
 
 app.use(indexRoutes);
 app.use("/jobs", jobRoutes);
-//// app.use("/jobs/:id/comments", commentRoutes);
+app.use("/user", userRoutes);
 
 const port = process.env.PORT || 3030;
 app.listen(port, function () {

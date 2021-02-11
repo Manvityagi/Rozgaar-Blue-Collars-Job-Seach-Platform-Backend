@@ -1,6 +1,6 @@
-var mongoose = require("mongoose");
+let mongoose = require("mongoose");
 //SCHEMA SETUP
-var jobSchema = new mongoose.Schema({
+let jobSchema = new mongoose.Schema({
   title: String,
   category: {
     type: String,

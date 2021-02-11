@@ -1,4 +1,4 @@
-var express = require("express"),
+let express = require("express"),
   router = express.Router(),
   Job = require("../models/job"),
   passport = require("passport"),
@@ -8,7 +8,7 @@ var express = require("express"),
 
 //handle sign up logic
 router.post("/register", function (req, res, next) {
-  var newUser = new User({ username: req.body.username });
+  let newUser = new User({ username: req.body.username });
   User.register(newUser, req.body.password, function (err, user) {
     if (err) {
       res.sendStatus(500);

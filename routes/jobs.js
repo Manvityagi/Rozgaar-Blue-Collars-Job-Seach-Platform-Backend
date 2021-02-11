@@ -1,4 +1,4 @@
-var express = require("express"),
+let express = require("express"),
   router = express.Router(),
   Job = require("../models/job"),
   Application = require("../models/application"),
@@ -10,11 +10,10 @@ router.use(methodOverride("_method"));
 
 //INDEX - show all jobs
 router.get("/", function (req, res) {
-  // console.log(`query string: ${req.query.CATEGORY}`)
   const category = req.query.CATEGORY;
   Job.find({ category: category }, function (err, alljobs) {
     if (err) {
-      res.sendStatus(500); //not sending any message
+      res.sendStatus(500);
     } else {
       const result = {
         jobs: alljobs,
@@ -26,9 +25,7 @@ router.get("/", function (req, res) {
 
 // //CREATE - add new job to DB
 router.post("/", middleware.isLoggedIn, function (req, res) {
-  // get data from form and add to jobs array
   // console.log("making job seeee", req.body);
-
   const {
     title,
     category,
@@ -61,7 +58,7 @@ router.post("/", middleware.isLoggedIn, function (req, res) {
 });
 
 //Apply to a job
-router.post("/:job_id", middleware.isLoggedIn, function (req, res) {
+router.post("/:job_id", function (req, res) {
   const user_id = req.user._id,
     job_id = req.params["job_id"];
 
