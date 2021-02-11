@@ -25,7 +25,7 @@ router.get("/", function (req, res) {
 });
 
 // //CREATE - add new job to DB
-router.post("/", function (req, res) {
+router.post("/", middleware.isLoggedIn, function (req, res) {
   // get data from form and add to jobs array
   // console.log("making job seeee", req.body);
 
@@ -55,7 +55,7 @@ router.post("/", function (req, res) {
     } else {
       // console.log("making job");
       // console.log(newlyCreated);
-      return res.send(newJob); 
+      return res.send(newJob);
     }
   });
 });
