@@ -11,13 +11,11 @@ const express = require("express"),
   cors = require("cors");
 app.use(cors());
 const Job = require("./models/job"),
-  //   Comment = require("./models/comment"), bla bla
   User = require("./models/user");
 
 const { db_user, db_pwd, db_host, db_name } = require("./config");
 
 //requiring routes
-// const commentRoutes = require("./routes/comments"),
 const jobRoutes = require("./routes/jobs"),
   indexRoutes = require("./routes/index");
 
@@ -46,7 +44,6 @@ app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method")); //to support HTTP Verbs other than GET,POST
 app.use(flash());
 
-//seedDB();
 
 //PASSPORT CONFIGURATION
 app.use(
