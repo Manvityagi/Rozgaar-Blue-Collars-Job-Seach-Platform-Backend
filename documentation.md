@@ -63,30 +63,59 @@ title: String,
 3. APPLY - This API has to be hit when user clicks on apply
    `POST - https://pacific-taiga-02637.herokuapp.com/jobs/:job_id/apply`
 
-4. Register/signup API -
-   `POST - https://pacific-taiga-02637.herokuapp.com/register`
+4. Register Job Seeker
+   `POST - https://pacific-taiga-02637.herokuapp.com/user/register`
+   ```
+   {
+   "username": "String",
+   "phoneNumber": "987654321",
+   "aadharNo": "523898134",
+   "category": "MECHANIC",
+   "YOE": "1",
+   "otherSkills": "",
+   "currentLocation": "Lucknow",
+   "availbility": "03.01.2021",
+   "messageForRecruiter": "I am very hard working"
+   }
+   ```
 
 ```
-req.body
-username: String,
-password: String
-```
 
-5. Login API -
-   `POST - https://pacific-taiga-02637.herokuapp.com/login `
+5. Get List of candidates
+   `GET - http://localhost:3030/jobs/candidates/?CATEGORY=MECHANIC`
 
-```
-req.body
-username: String,
-password: String
-```
-
-6. Logout API
-   `GET - https://pacific-taiga-02637.herokuapp.com/logout`
 
 PENDING APIS:
 
 1. Patch API for updating user profile
 2. GET - /jobs/<:job_id>/applicants - Will return applicants of a job with job_id
 3. GET - /user/<:user_id>/applied_jobs - Will return jobs to which user_id applied
-and a few more..will add soon
+   and a few more..will add soon
+```
+
+DELETED APIs:
+
+6. Register/signup API -
+   `POST - https://pacific-taiga-02637.herokuapp.com/register`
+
+```
+
+req.body
+username: String,
+password: String
+
+```
+
+5. Login API -
+   `POST - https://pacific-taiga-02637.herokuapp.com/login `
+
+```
+
+req.body
+username: String,
+password: String
+
+```
+
+6. Logout API
+   `GET - https://pacific-taiga-02637.herokuapp.com/logout`

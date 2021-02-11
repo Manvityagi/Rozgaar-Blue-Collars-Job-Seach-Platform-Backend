@@ -1,10 +1,8 @@
 let express = require("express"),
   router = express.Router(),
   Job = require("../models/job"),
-  Application = require("../models/application"),
-  methodOverride = require("method-override"),
-  mongoose = require("mongoose"),
-  middleware = require("../middlewares");
+  User = require("../models/user"),
+  methodOverride = require("method-override");
 
 router.use(methodOverride("_method"));
 
@@ -24,87 +22,59 @@ router.get("/", function (req, res) {
 });
 
 // //CREATE - add new job to DB
-router.post("/", middleware.isLoggedIn, function (req, res) {
-  // console.log("making job seeee", req.body);
-  const {
-    title,
-    category,
-    location,
-    description,
-    offeredSalary,
-    numberOfPositions,
-  } = req.body;
-
-  const newJob = {
-    title,
-    category,
-    location,
-    description,
-    offeredSalary,
-    numberOfPositions,
-    // author: { id: req.user._id, username: req.user.username },
-  };
+router.post("/", function (req, res) {
   // Create a new job and save to DB
-  Job.create(newJob, function (err, newlyCreated) {
+  Job.create(req.body, function (err, newlyCreated) {
     if (err) {
       console.log(err);
       res.send(err);
     } else {
-      // console.log("making job");
-      // console.log(newlyCreated);
       return res.send(newJob);
     }
   });
 });
 
-//Apply to a job
-router.post("/:job_id", function (req, res) {
-  const user_id = req.user._id,
-    job_id = req.params["job_id"];
-
-  Application.create({}, function (err, newlyCreatedApplication) {
+//Get availalble candidates of a job
+router.get("/candidates", function (req, res) {
+  const category = req.query.CATEGORY;
+  User.find({ category: category }, function (err, allCandidates) {
     if (err) {
-      res.send(err);
+      res.sendStatus(500);
     } else {
-      newlyCreatedApplication.job.id = user_id;
-      newlyCreatedApplication.applicant.id = job_id;
-      newlyCreatedApplication.save();
-
-      // job.newlyCreatedApplications.push(newlyCreatedApplication);
-      // job.save();
-
-      // console.log(`Newly created application ${newlyCreatedApplication}`);
-      res.send(newlyCreatedApplication);
+      const result = {
+        candidates: allCandidates,
+      };
+      res.send(result);
     }
   });
 });
 
-//For each jobs, get applicants
-router.get("/:job_id/applicants", function (req, res) {
-  Application.findById(req.params.job_id)
-    .populate("users")
-    .exec(function (err, allApplicants) {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send(allApplicants);
-      }
-    });
+//Apply to a job
+router.post("/:email_id/:phoneNumber", function (req, res) {
+  //req.body - aadhar number of applicant
+  // if(200) - OK
+  //else redirect user to update profile first
 });
 
-// //SHOW - show info about one job
-// router.get("/:id", function (req, res) {
-//   //find the cg with provided id
-//   Job.findById(req.params.id)
-//     .populate("newlyCreatedApplications")
-//     .exec(function (err, foundJob) {
+
+
+
+
+
+
+
+
+//For each jobs, get applicants
+// router.get("/:job_id/applicants", function (req, res) {
+//   Application.findById(req.params.job_id)
+//     .populate("users")
+//     .exec(function (err, allApplicants) {
 //       if (err) {
-//         console.log(err);
+//         res.send(err);
 //       } else {
-//         res.render("jobs/show", { job: foundJob });
+//         res.send(allApplicants);
 //       }
 //     });
-//   //render show with that cg
 // });
 
 module.exports = router;

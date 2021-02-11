@@ -22,6 +22,8 @@ let jobSchema = new mongoose.Schema({
   description: String,
   offeredSalary: Number,
   numberOfPositions: Number,
+  recruiterEmailId: String,
+  recruiterPhoneNumber: Number,
   // author: {
   //   id: {
   //     type: mongoose.Schema.Types.ObjectId,

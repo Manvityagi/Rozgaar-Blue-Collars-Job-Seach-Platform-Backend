@@ -31,7 +31,7 @@ let UserSchema = new mongoose.Schema({
   YOE: Number,
   otherSkills: String,
   currentLocation: String,
-  availbility: Date,
+  availibility: Date,
   messageForRecruiter: String,
 });
 
