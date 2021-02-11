@@ -1,7 +1,7 @@
 var express = require("express"),
   router = express.Router(),
   Job = require("../models/job"),
-  //   Comment = require("../models/comment"),
+  Application = require("../models/application"),
   methodOverride = require("method-override"),
   mongoose = require("mongoose"),
   middleware = require("../middlewares");
@@ -27,8 +27,7 @@ router.get("/", function (req, res) {
 // //CREATE - add new job to DB
 router.post("/", function (req, res) {
   // get data from form and add to jobs array
-
-  console.log(req.body);
+  // console.log(req.body);
   const {
     title,
     category,
@@ -45,7 +44,7 @@ router.post("/", function (req, res) {
     description,
     offeredSalary,
     numberOfPositions,
-    // author: { id: req.user._id, username: req.user.username },
+    author: { id: req.user._id, username: req.user.username },
   };
   // Create a new job and save to DB
   Job.create(newJob, function (err, newlyCreated) {
@@ -53,6 +52,7 @@ router.post("/", function (req, res) {
       res.send(err);
     } else {
       console.log("making job");
+      console.log(newlyCreated);
       res.send(newJob); //or simply res.sendstatus(200)
     }
   });
@@ -60,14 +60,44 @@ router.post("/", function (req, res) {
 
 //Apply to a job
 router.post("/:job_id", middleware.isLoggedIn, function (req, res) {
-    res.send(req.params["job_id"])
+  const user_id = req.user._id,
+    job_id = req.params["job_id"];
+
+  Application.create({}, function (err, newlyCreatedApplication) {
+    if (err) {
+      res.send(err);
+    } else {
+      newlyCreatedApplication.job.id = user_id;
+      newlyCreatedApplication.applicant.id = job_id;
+      newlyCreatedApplication.save();
+
+      // job.newlyCreatedApplications.push(newlyCreatedApplication);
+      // job.save();
+
+      // console.log(`Newly created application ${newlyCreatedApplication}`);
+      res.send(newlyCreatedApplication);
+    }
+  });
+});
+
+//For each jobs, get applicants
+router.get("/:job_id/applicants", function (req, res) {
+  Application.findById(req.params.job_id)
+    .populate("users")
+    .exec(function (err, allApplicants) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send(allApplicants);
+      }
+    });
 });
 
 // //SHOW - show info about one job
 // router.get("/:id", function (req, res) {
 //   //find the cg with provided id
 //   Job.findById(req.params.id)
-//     .populate("comments")
+//     .populate("newlyCreatedApplications")
 //     .exec(function (err, foundJob) {
 //       if (err) {
 //         console.log(err);
