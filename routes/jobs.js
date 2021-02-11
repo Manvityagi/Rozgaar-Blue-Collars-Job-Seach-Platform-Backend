@@ -2,9 +2,8 @@ let express = require("express"),
   router = express.Router(),
   Job = require("../models/job"),
   User = require("../models/user"),
-  methodOverride = require("method-override");
-// import { getAllJobs, postNewJob, getAllCandidates } from "../services/jobs";
-jobService = require("../services/jobs");
+  methodOverride = require("method-override"),
+  jobService = require("../services/jobs");
 
 router.use(methodOverride("_method"));
 
