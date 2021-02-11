@@ -51,9 +51,9 @@ router.post("/", function (req, res) {
     if (err) {
       res.send(err);
     } else {
-      console.log("making job");
-      console.log(newlyCreated);
-      res.send(newJob); //or simply res.sendstatus(200)
+      // console.log("making job");
+      // console.log(newlyCreated);
+      return res.send(newJob); 
     }
   });
 });
