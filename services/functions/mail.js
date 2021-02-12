@@ -16,7 +16,7 @@ function mail(to, msg) {
   const mailOptions = {
     from: admin_mail,
     to: to,
-    subject: "New Visitor Details",
+    subject: "New Applicant Details",
     text: msg
   };
 

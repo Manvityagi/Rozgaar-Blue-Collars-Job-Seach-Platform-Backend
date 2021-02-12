@@ -1,21 +1,22 @@
 let Job = require("../models/job"),
   User = require("../models/user"),
-  sendMail = require("../services/functions/mail");
-// sendSMS = require("../services/functions/sms");
+  sendMail = require("./functions/mail"),
+  util = require("./functions/util"),
+  sendSMS = require("../services/functions/sms");
 
-function getAllJobs(req, res) {
-  const category = req.query.CATEGORY;
-  Job.find({ category: category }, function (err, alljobs) {
-    if (err) {
-      res.sendStatus(500);
-    } else {
-      const result = {
-        jobs: alljobs,
-      };
-      res.send(result);
-    }
-  });
-}
+  function getAllJobs(req, res) {
+    const category = req.query.CATEGORY;
+    Job.find({ category: category }, function (err, alljobs) {
+      if (err) {
+        res.sendStatus(500);
+      } else {
+        const result = {
+          jobs: alljobs,
+        };
+        res.send(result);
+      }
+    });
+  }
 
 function postNewJob(req, res) {
   // Create a new job and save to DB
@@ -51,7 +52,7 @@ async function applyToAJob(req, res) {
   try {
     applicant = await User.findOne({ aadharNumber: aadharNumber });
   } catch (err) {
-    return res.status(404).send("Something wen wrong");
+    return res.status(404).send("Something went wrong");
   }
   if (!applicant) {
     return res
@@ -64,17 +65,35 @@ async function applyToAJob(req, res) {
     //Find recruiter email and phone number through job_id
     recruiterEmailId = job.recruiterEmailId;
     recruiterPhoneNumber = job.recruiterPhoneNumber;
-    // const msg = createMessage();
+
+    let msg = util.createMessageForRecruiter(
+      applicant.username,
+      applicant.phoneNumber,
+      applicant.category,
+      applicant.otherSkills,
+      applicant.YOE,
+      applicant.availibility
+    );
+    sendMail(recruiterEmailId, msg);
+    sendSMS(recruiterPhoneNumber, msg);
+
+    msg = util.createMessageForApplicant(
+      applicant.username,
+      job.category,
+      job.title
+    );
+    const applicantPhone = "+91" + applicant.phoneNumber;
+    sendSMS(applicantPhone, msg);
   } catch (err) {
-    return res.status(404).send("Job doesn't exist");
+    return res.status(404).send(err, "Job doesn't exist");
   }
 
-  //req.body - aadhar number of applicant
-  // if(200) - OK
-  //else redirect user to update profile first
-  res.status(200).send("Your application has been sent!");
-  // const result = { job: job, applicant: applicant };
-  // res.send(result);
+  if (!job) {
+    return res.status(404).send("Job doesn't exist");
+  }
+  // res.status(200).send("Your application has been sent!");
+  const result = { job: job, applicant: applicant };
+  res.send(result);
 }
 
 result = {
