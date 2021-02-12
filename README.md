@@ -42,7 +42,19 @@ $ node index.js
 
 ## Workflow
 
-#### For Job Seeker
+I have identified 9 categories of job-seekers to make the platform more intuitive and simple.
+
+- Electrician
+- Plumber
+- Labour
+- Driver
+- Maid
+- Security guard
+- Cook
+- Peon
+- Mechanic
+
+### For Job Seeker
 
 1. Register
 2. Update Profile
@@ -50,7 +62,7 @@ $ node index.js
 4. The applicant gets an SMS on his/her phone number after applying to a job.
    ![SMS TO APPLICANT](https://github.com/Manvityagi/Rozgaar-Blue-Collars-Job-Seach-Platform-Backend/raw/main/assets/msgToApplicant.jpg)
 
-#### For Job Poster
+### For Job Poster
 
 1. Post Jobs
 2. Get applications on your posted jobs and shortlist.
