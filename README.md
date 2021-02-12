@@ -44,7 +44,7 @@ $ node index.js
 2. Update Profile
 3. Apply on jobs - just by clicking - as simple as that.
 4. The applicant gets an SMS on his/her phone number after applying to a job.
-   ![SMS TO APPLICANT](https://github.com/Manvityagi/Rozgaar-Blue-Collars-Job-Seach-Platform-Backend/raw/main/assets/msgToApplicant.jpg =100x20)
+   ![SMS TO APPLICANT](https://github.com/Manvityagi/Rozgaar-Blue-Collars-Job-Seach-Platform-Backend/raw/main/assets/msgToApplicant.jpg)
 
 #### For Job Poster
 
