@@ -9,7 +9,7 @@ let UserSchema = new mongoose.Schema({
     required: true,
     default: 0,
   },
-  aadharNo: {
+  aadharNumber: {
     type: String,
   },
   category: {

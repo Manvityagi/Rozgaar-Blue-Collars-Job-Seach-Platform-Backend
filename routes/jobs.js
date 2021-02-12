@@ -17,11 +17,6 @@ router.post("/", jobService.postNewJob);
 router.get("/candidates", jobService.getAllCandidates);
 
 //Apply to a job
-router.post("/:job_id", function (req, res) {
-  //Find recruiter email and phone number through job_id
-  //req.body - aadhar number of applicant
-  // if(200) - OK
-  //else redirect user to update profile first
-});
+router.post("/:job_id/apply",jobService.applyToAJob);
 
 module.exports = router;
