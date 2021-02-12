@@ -11,7 +11,6 @@ const { db_user, db_pwd, db_host, db_name } = require("./config");
 
 //requiring routes
 const jobRoutes = require("./routes/jobs"),
-  indexRoutes = require("./routes/index"),
   userRoutes = require("./routes/user");
 
 const mongoSrvString = `mongodb+srv://${db_user}:${db_pwd}@${db_host}/${db_name}?retryWrites=true&w=majority`;
@@ -40,7 +39,6 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method")); //to support HTTP Verbs other than GET,POST
 
-app.use(indexRoutes);
 app.use("/jobs", jobRoutes);
 app.use("/user", userRoutes);
 

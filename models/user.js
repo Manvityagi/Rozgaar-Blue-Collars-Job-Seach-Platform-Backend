@@ -1,16 +1,18 @@
 let mongoose = require("mongoose");
-let passportLocalMongoose = require("passport-local-mongoose");
 
 let UserSchema = new mongoose.Schema({
-  username: String,
+  username: {
+    type: String,
+    required: true,
+  },
   // password: String,
   phoneNumber: {
     type: Number,
     required: true,
-    default: 0,
   },
   aadharNumber: {
     type: String,
+    required: true,
   },
   category: {
     type: String,
@@ -28,13 +30,17 @@ let UserSchema = new mongoose.Schema({
     ],
     default: "OTHERS",
   },
-  YOE: Number,
+  YOE: {
+    type: Number,
+    defaut: 0,
+  },
   otherSkills: String,
   currentLocation: String,
-  availibility: Date,
+  availibility: {
+    type: Date,
+    required: true,
+  },
   messageForRecruiter: String,
 });
-
-// UserSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model("User", UserSchema);

@@ -1,7 +1,10 @@
 let mongoose = require("mongoose");
 //SCHEMA SETUP
 let jobSchema = new mongoose.Schema({
-  title: String,
+  title: {
+    type: String,
+    required: true,
+  },
   category: {
     type: String,
     enum: [
@@ -18,12 +21,24 @@ let jobSchema = new mongoose.Schema({
     ],
     default: "OTHERS",
   },
-  location: String,
+  location: {
+    type: String,
+    required: true,
+  },
   description: String,
   offeredSalary: Number,
-  numberOfPositions: Number,
-  recruiterEmailId: String,
-  recruiterPhoneNumber: Number,
+  numberOfPositions: {
+    type: Number,
+    default: 1,
+  },
+  recruiterEmailId: {
+    type: String,
+    required: true,
+  },
+  recruiterPhoneNumber: {
+    type: Number,
+    required: true,
+  },
   // author: {
   //   id: {
   //     type: mongoose.Schema.Types.ObjectId,
