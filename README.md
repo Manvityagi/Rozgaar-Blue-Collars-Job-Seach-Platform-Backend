@@ -44,7 +44,7 @@ $ node index.js
 2. Update Profile
 3. Apply on jobs - just by clicking - as simple as that.
 4. The applicant gets an SMS on his/her phone number after applying to a job.
-   ![SMS TO APPLICANT](https://github.com/Manvityagi/Rozgaar-Blue-Collars-Job-Seach-Platform-Backend/raw/master/assets/msgToApplicant.jpg)
+   ![SMS TO APPLICANT](https://github.com/Manvityagi/Rozgaar-Blue-Collars-Job-Seach-Platform-Backend/raw/main/assets/msgToApplicant.jpg)
 
 #### For Job Poster
 
@@ -53,7 +53,7 @@ $ node index.js
 3. **Ease the flow** for both parties
    - Job Seekers Profiles will be available all throughout, Recruiters can directly see their profiles and give them a message/call
 4. Job Poster gets an email when someone applies on a job posted by him/her.
-   ![MAIL TO RECRUITER](https://github.com/Manvityagi/Rozgaar-Blue-Collars-Job-Seach-Platform-Backend/raw/master/assets/recruiterMail.PNG)
+   ![MAIL TO RECRUITER](https://github.com/Manvityagi/Rozgaar-Blue-Collars-Job-Seach-Platform-Backend/raw/main/assets/recruiterMail.PNG)
 
 ## 🔨 API Endpoints
 
