@@ -84,38 +84,32 @@ title: String,
 5. Get List of candidates
    `GET - http://localhost:3030/jobs/candidates/?CATEGORY=MECHANIC`
 
+## 🔨 API Endpoints
 
-PENDING APIS:
+Index
+| REQUEST METHODS | ENDPOINTS | DESCRIPTION |
+| :-------------- | :-------: | ------------------: |
+| GET | /register | Render signup page |
+| POST | /register | Handle Signup Logic |
+| POST | /login | Render Login Page |
+| POST | /login | Handle Login logic |
+| GET | /logout | Logs out the user |
 
-1. Patch API for updating user profile
-2. GET - /jobs/<:job_id>/applicants - Will return applicants of a job with job_id
-3. GET - /user/<:user_id>/applied_jobs - Will return jobs to which user_id applied
-   and a few more..will add soon
-```
+`/campgrounds`
+| REQUEST METHODS | ENDPOINTS | DESCRIPTION |
+| :-------------- | :-------: | ------------------: |
+| GET | / | Show all Campgrounds |
+| POST | / | Add new campground to DB |
+| GET | /new | Render post form |
+| GET | /:id | Show details of campground with id |
+| GET | /:id/edit | Render edit form |
+| PUT | /:id/ | Do the edit logic |
+| DELETE | /:id | Delete campground with id |
 
-DELETED APIs:
-
-6. Register/signup API -
-   `POST - https://pacific-taiga-02637.herokuapp.com/register`
-
-```
-
-req.body
-username: String,
-password: String
-
-```
-
-5. Login API -
-   `POST - https://pacific-taiga-02637.herokuapp.com/login `
-
-```
-
-req.body
-username: String,
-password: String
-
-```
-
-6. Logout API
-   `GET - https://pacific-taiga-02637.herokuapp.com/logout`
+`/campgrounds/:id/comments`
+| REQUEST METHODS | ENDPOINTS | DESCRIPTION |
+| :-------------- | :-------: | ------------------: |
+| POST | / | Add new comment to current campground |
+| GET | /new | Render comment form |
+| PUT | /:id/ | Do the comment edit logic |
+| DELETE | /:id | Delete comment with id |

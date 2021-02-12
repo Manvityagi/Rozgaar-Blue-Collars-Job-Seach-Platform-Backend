@@ -22,9 +22,7 @@ function createMessageForRecruiter(
 }
 
 function createMessageForApplicant(applicantName, jobName, recruiterName) {
-  const msg = `    
-     ${applicantName}, Your application for ${jobName} has been sent to ${recruiterName}.
-     You will be contacted by them for further discussion.
+  const msg = `${applicantName}, Your application for ${jobName} has been sent to ${recruiterName}. You will be contacted by them for further discussion.
     `;
   return msg;
 }
