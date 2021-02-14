@@ -4,19 +4,19 @@ let Job = require("../models/job"),
   util = require("./functions/util"),
   sendSMS = require("../services/functions/sms");
 
-  function getAllJobs(req, res) {
-    const category = req.query.CATEGORY;
-    Job.find({ category: category }, function (err, alljobs) {
-      if (err) {
-        res.sendStatus(500);
-      } else {
-        const result = {
-          jobs: alljobs,
-        };
-        res.send(result);
-      }
-    });
-  }
+function getAllJobs(req, res) {
+  const category = req.query.CATEGORY;
+  Job.find({ category: category }, function (err, alljobs) {
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      const result = {
+        jobs: alljobs,
+      };
+      res.send(result);
+    }
+  });
+}
 
 function postNewJob(req, res) {
   // Create a new job and save to DB
@@ -63,6 +63,9 @@ async function applyToAJob(req, res) {
   try {
     job = await Job.findById(job_id);
     //Find recruiter email and phone number through job_id
+    if (!job) {
+      return res.status(404).send("Job doesn't exist");
+    }
     recruiterEmailId = job.recruiterEmailId;
     recruiterPhoneNumber = job.recruiterPhoneNumber;
 
@@ -88,12 +91,9 @@ async function applyToAJob(req, res) {
     return res.status(404).send(err, "Job doesn't exist");
   }
 
-  if (!job) {
-    return res.status(404).send("Job doesn't exist");
-  }
-  // res.status(200).send("Your application has been sent!");
-  const result = { job: job, applicant: applicant };
-  res.send(result);
+  res.status(200).send("Your application has been sent!");
+  // const result = { job: job, applicant: applicant };
+  // res.send(result);
 }
 
 result = {

@@ -10,16 +10,20 @@ let UserSchema = new mongoose.Schema({
   // password: String,
   phoneNumber: {
     type: String,
-    minLength: 10,
-    maxLength: 10,
     validate: /^\d{10}$/,
     required: true,
   },
+  /*
+    It should have 12 digits.
+    It should not start with 0 and 1.
+    It should not contain any alphabet and special characters.
+    It should have white space after every 4 digits.
+  */
   aadharNumber: {
     type: String,
     required: true,
-    minLength: 12,
-    maxLength: 12,
+    unique: true,
+    validate: /^\d{12}$/,
   },
   category: {
     type: String,
@@ -41,8 +45,14 @@ let UserSchema = new mongoose.Schema({
     type: Number,
     defaut: 0,
   },
-  otherSkills: String,
-  currentLocation: String,
+  otherSkills: {
+    type: String,
+    default: "NA",
+  },
+  currentLocation: {
+    type: String,
+    required: true,
+  },
   availibility: {
     type: Date,
     required: true,
@@ -52,7 +62,5 @@ let UserSchema = new mongoose.Schema({
     maxLength: 100,
   },
 });
-
-UserSchema.index({ aadharNumber: 1, category: 1 }, { unique: true });
 
 module.exports = mongoose.model("User", UserSchema);
