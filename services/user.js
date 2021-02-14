@@ -10,10 +10,10 @@ class UserService {
     YOE,
     otherSkills,
     currentLocation,
-    availibility,
+    availability,
     messageForRecruiter
   ) {
-    // console.log("Reached service");
+    console.log("Reached service", availability);
     try {
       let res = await this.userManager.createUser(
         username,
@@ -23,13 +23,13 @@ class UserService {
         YOE,
         otherSkills,
         currentLocation,
-        availibility,
+        availability,
         messageForRecruiter
       );
-      // console.log("Received from manager in service ", res);
+      console.log("Received from manager in service ", res);
       return res;
     } catch (err) {
-      // console.log("Received ERROR from manager in service ", err);
+      console.log("Received ERROR from manager in service ", err);
       throw err;
     }
   }

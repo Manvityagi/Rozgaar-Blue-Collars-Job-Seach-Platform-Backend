@@ -75,7 +75,7 @@ async function applyToAJob(req, res) {
       applicant.category,
       applicant.otherSkills,
       applicant.YOE,
-      applicant.availibility
+      applicant.availability
     );
     sendMail(recruiterEmailId, msg);
     sendSMS(recruiterPhoneNumber, msg);

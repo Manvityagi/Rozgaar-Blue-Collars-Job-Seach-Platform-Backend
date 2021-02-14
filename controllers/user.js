@@ -12,10 +12,12 @@ class UserController {
       YOE,
       otherSkills,
       currentLocation,
-      availibility,
+      availability,
       messageForRecruiter,
     } = req.body;
-    // console.log("Reached controller");
+
+    console.log("Reached controller");
+    console.log(req.body);
     try {
       const user = await this.userService.createUser(
         username,
@@ -25,13 +27,14 @@ class UserController {
         YOE,
         otherSkills,
         currentLocation,
-        availibility,
+        availability,
         messageForRecruiter
       );
       return res.status(201).json({
         data: user,
       });
     } catch (err) {
+      console.log("Error being sent from backend", err);
       return res.status(400).send(err);
     }
   }

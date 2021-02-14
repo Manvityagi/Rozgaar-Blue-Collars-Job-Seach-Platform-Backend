@@ -22,7 +22,7 @@
 
 ### Additional Features to be added after Hackathon:
 
-- Job Seekers can post theri profile and availibility which will be visible by users
+- Job Seekers can post theri profile and availability which will be visible by users
 - Stars/Reviews for job seekers
 - Register by calling also (for job seekers) - simply call on a support number and automated clicks on phone
 - Multi-lingual
@@ -113,3 +113,4 @@ Index
 | GET | /new | Render comment form |
 | PUT | /:id/ | Do the comment edit logic |
 | DELETE | /:id | Delete comment with id |
+```

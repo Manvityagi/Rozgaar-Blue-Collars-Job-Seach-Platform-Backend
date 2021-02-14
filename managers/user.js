@@ -14,10 +14,10 @@ class UserManager {
     YOE,
     otherSkills,
     currentLocation,
-    availibility,
+    availability,
     messageForRecruiter
   ) {
-    // console.log("Reached manager");
+    console.log("Reached manager", availability);
     let user = {
       username: username,
       phoneNumber: phoneNumber,
@@ -26,14 +26,15 @@ class UserManager {
       YOE: YOE,
       otherSkills: otherSkills,
       currentLocation: currentLocation,
-      availibility: availibility,
+      availability: availability,
       messageForRecruiter: messageForRecruiter,
     };
+    console.log("printing from manager", user);
     try {
       const newUser = await this.user.create(user);
       return newUser;
     } catch (err) {
-      //   console.log("ERROR IN USER MANAGER");
+      console.log("ERROR IN USER MANAGER");
       throw err;
     }
   }

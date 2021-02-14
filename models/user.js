@@ -13,12 +13,6 @@ let UserSchema = new mongoose.Schema({
     validate: /^\d{10}$/,
     required: true,
   },
-  /*
-    It should have 12 digits.
-    It should not start with 0 and 1.
-    It should not contain any alphabet and special characters.
-    It should have white space after every 4 digits.
-  */
   aadharNumber: {
     type: String,
     required: true,
@@ -53,7 +47,7 @@ let UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  availibility: {
+  availability: {
     type: Date,
     required: true,
   },
