@@ -4,10 +4,15 @@ let UserSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
+    minLength: 5,
+    maxLength: 50,
   },
   // password: String,
   phoneNumber: {
-    type: Number,
+    type: String,
+    minLength: 10,
+    maxLength: 10,
+    validate: /^\d{10}$/,
     required: true,
   },
   aadharNumber: {
@@ -42,9 +47,12 @@ let UserSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  messageForRecruiter: String,
+  messageForRecruiter: {
+    type: String,
+    maxLength: 100,
+  },
 });
 
-UserSchema.index({ username: 1, category: 1 }, { unique: true });
+UserSchema.index({ aadharNumber: 1, category: 1 }, { unique: true });
 
 module.exports = mongoose.model("User", UserSchema);

@@ -2,8 +2,11 @@ let mongoose = require("mongoose");
 //SCHEMA SETUP
 let jobSchema = new mongoose.Schema({
   title: {
+    //recruiter name
     type: String,
     required: true,
+    minLength: 5,
+    maxLength: 50,
   },
   category: {
     type: String,
@@ -24,6 +27,8 @@ let jobSchema = new mongoose.Schema({
   location: {
     type: String,
     required: true,
+    minLength: 5,
+    maxLength: 50,
   },
   description: String,
   offeredSalary: Number,
@@ -34,9 +39,14 @@ let jobSchema = new mongoose.Schema({
   recruiterEmailId: {
     type: String,
     required: true,
+    minLength: 5,
+    maxLength: 50,
   },
   recruiterPhoneNumber: {
-    type: Number,
+    type: String,
+    minLength: 10,
+    maxLength: 10,
+    validate: /^\d{10}$/,
     required: true,
   },
   // author: {
