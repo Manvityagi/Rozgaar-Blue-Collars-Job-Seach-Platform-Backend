@@ -1,18 +1,37 @@
-let User = require("../models/user");
-
-function postUser(req, res) {
-  User.create(req.body, function (err, newlyCreatedUser) {
-    if (err) {
-      console.log(err);
-      res.status(400).send(err);
-    } else {
-      return res.send(newlyCreatedUser);
+class UserService {
+  constructor(userManager) {
+    this.userManager = userManager;
+  }
+  async createUser(
+    username,
+    phoneNumber,
+    aadharNumber,
+    category,
+    YOE,
+    otherSkills,
+    currentLocation,
+    availibility,
+    messageForRecruiter
+  ) {
+    // console.log("Reached service");
+    try {
+      let res = await this.userManager.createUser(
+        username,
+        phoneNumber,
+        aadharNumber,
+        category,
+        YOE,
+        otherSkills,
+        currentLocation,
+        availibility,
+        messageForRecruiter
+      );
+      // console.log("Received from manager in service ", res);
+      return res;
+    } catch (err) {
+      // console.log("Received ERROR from manager in service ", err);
+      throw err;
     }
-  });
+  }
 }
-
-result = {
-  postUser: postUser,
-};
-
-module.exports = result;
+module.exports = UserService;
