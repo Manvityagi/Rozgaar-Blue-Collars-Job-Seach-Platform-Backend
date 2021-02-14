@@ -4,7 +4,7 @@ function postUser(req, res) {
   User.create(req.body, function (err, newlyCreatedUser) {
     if (err) {
       console.log(err);
-      res.send(err);
+      res.status(400).send(err);
     } else {
       return res.send(newlyCreatedUser);
     }
@@ -12,7 +12,7 @@ function postUser(req, res) {
 }
 
 result = {
-  postUser:postUser
-}
+  postUser: postUser,
+};
 
 module.exports = result;

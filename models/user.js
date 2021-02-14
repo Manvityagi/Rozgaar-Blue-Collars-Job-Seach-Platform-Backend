@@ -13,6 +13,8 @@ let UserSchema = new mongoose.Schema({
   aadharNumber: {
     type: String,
     required: true,
+    minLength: 12,
+    maxLength: 12,
   },
   category: {
     type: String,
@@ -42,5 +44,7 @@ let UserSchema = new mongoose.Schema({
   },
   messageForRecruiter: String,
 });
+
+UserSchema.index({ username: 1, category: 1 }, { unique: true });
 
 module.exports = mongoose.model("User", UserSchema);
