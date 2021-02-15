@@ -10,7 +10,7 @@ const express = require("express"),
 const { db_user, db_pwd, db_host, db_name } = require("./config");
 
 //requiring routes
-const jobRoutes = require("./routes/jobs"),
+const jobRoutes = require("./routes/job"),
   userRoutes = require("./routes/user");
 
 const mongoSrvString = `mongodb+srv://${db_user}:${db_pwd}@${db_host}/${db_name}?retryWrites=true&w=majority`;

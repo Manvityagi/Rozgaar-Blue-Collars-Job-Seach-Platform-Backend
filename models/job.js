@@ -27,7 +27,7 @@ let jobSchema = new mongoose.Schema({
   location: {
     type: String,
     required: true,
-    minLength: 5,
+    minLength: 2,
     maxLength: 50,
   },
   description: String,

@@ -1,4 +1,4 @@
-const { twilio_sid, twilio_auth_token, admin_phone } = require("../../config")
+const { twilio_sid, twilio_auth_token, admin_phone } = require("../config");
 const client = require("twilio")(twilio_sid, twilio_auth_token);
 
 function sms(to, msg) {
@@ -6,12 +6,12 @@ function sms(to, msg) {
     .create({
       body: msg,
       from: admin_phone,
-      to: to
+      to: to,
     })
-    .then(message =>
-      console.log("Message successfully sent! Message SID: ", message.sid,to)
+    .then((message) =>
+      console.log("Message successfully sent! Message SID: ", message.sid, to)
     )
-    .catch(err => {
+    .catch((err) => {
       // cannot redirect here because it is asynchronous
       console.log("Message couldn't be sent. Error: ", err);
     });

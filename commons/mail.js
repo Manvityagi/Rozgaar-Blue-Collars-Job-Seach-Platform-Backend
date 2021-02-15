@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 
-const { admin_mail, admin_mail_pass } = require("../../config");
+const { admin_mail, admin_mail_pass } = require("../config");
 
 function mail(to, msg) {
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
@@ -9,23 +9,23 @@ function mail(to, msg) {
     service: "gmail",
     auth: {
       user: admin_mail,
-      pass: admin_mail_pass
-    }
+      pass: admin_mail_pass,
+    },
   });
 
   const mailOptions = {
     from: admin_mail,
     to: to,
     subject: "New Applicant Details",
-    text: msg
+    text: msg,
   };
 
   transporter
     .sendMail(mailOptions)
-    .then(result => {
+    .then((result) => {
       console.log("Mail successfully sent! Result:", result);
     })
-    .catch(err => {
+    .catch((err) => {
       console.log("Mail couldn't be sent. Err: ", err);
     });
 }

@@ -3,7 +3,6 @@ let User = require("../models/user");
 class UserManager {
   constructor() {
     this.user = User;
-    // this.user.sync({ force: true });
   }
 
   async createUser(
