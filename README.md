@@ -102,7 +102,7 @@ We will structure our application using the controller, service, and, manager pa
 | :-------------- | :-------: | ------------------: |
 | POST | /user/register | Adds new user to DB |
 
-### [Pending Tasks]()
+### [Pending Tasks](https://github.com/Manvityagi/Rozgaar-Blue-Collars-Job-Seach-Platform-Backend/blob/main/tests.md)
 
 - Unit Tests - Due to shortage of time, I couldn't write many unit-test.
 - Login Sessions and Dashboard of Applications

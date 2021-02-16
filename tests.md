@@ -2,27 +2,27 @@
 
 - ### User
 
-##### UserManager
+#### UserManager
 
 1. **Create User - Test Cases**
-   (i) All valid Entries should add a new user to the DB.
-   (ii) All data added should hold equality.
-   (iii) Invalid Entries should result in status code - 400 for invalid.
-   request.
-   (iv) Valid Entries should result in status code 201.
-   (v) The returned schema is same as expected structure.
-   (vi) Test to check failure when duplicate aadharNumber entry is made.
-   Simlar Tests for `UserController` & `UserServices` by using stubs for dependencies.
+   (i) All valid Entries should add a new user to the DB. <br/>
+   (ii) All data added should hold equality.<br/>
+   (iii) Invalid Entries should result in status code - 400 for invalid
+   request.<br/>
+   (iv) Valid Entries should result in status code 201.<br/>
+   (v) The returned schema is same as expected structure.<br/>
+   (vi) Test to check failure when duplicate aadharNumber entry is made.<br/>
+   Simlar Tests for `UserController` & `UserServices` by using stubs for dependencies.<br/>
 
 - ### Job
 
-##### JobManager
+#### JobManager
 
-1. **getAllJobs - Test Cases**
-   (i) Should return an array of Job Objects.
-   (ii) Should return an empty array in case of invalid category.
-2. **createJob - Test Cases**
-   (i) All valid Entries should add a new job to the DB.
+1. **getAllJobs - Test Cases** <br/>
+   (i) Should return an array of Job Objects.<br/>
+   (ii) Should return an empty array in case of invalid category. <br/>
+2. **createJob - Test Cases** <br/>
+   (i) All valid Entries should add a new job to the DB. <br/>
    (ii) All data added should hold equality.
    (iii) Invalid Entries should result in status code - 400 for invalid.
    request.
