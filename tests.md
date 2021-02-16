@@ -1,8 +1,8 @@
-## Unit-Tests
+# Unit-Tests
 
-- ### User
+- ## User
 
-#### UserManager
+### UserManager
 
 1. **Create User - Test Cases** <br/>
    (i) All valid Entries should add a new user to the DB. <br/>
@@ -11,12 +11,12 @@
    request.<br/>
    (iv) Valid Entries should result in status code 201.<br/>
    (v) The returned schema is same as expected structure.<br/>
-   (vi) Test to check failure when duplicate aadharNumber entry is made.<br/>
+   (vi) Test to check failure when duplicate aadharNumber entry is made.<br/> <br/>
    Simlar Tests for `UserController` & `UserServices` by using stubs for dependencies.<br/>
 
-- ### Job
+- ## Job
 
-#### JobManager
+### JobManager
 
 1. **getAllJobs - Test Cases** <br/>
    (i) Should return an array of Job Objects.<br/>
@@ -35,5 +35,5 @@
    (i) Valid job_id and aadharNumber should call the sendSMS function twice and sendMail function once. <br/>
    (ii) aadharNumber which doesn't yet exixts in the Users Collection should give an error. <br/>
    (iii) Inavlid Job Id shall throw error. <br/>
-   (iv) Invalid Phone Number/Email-Id throws Error - JobServices. <br/>
+   (iv) Invalid Phone Number/Email-Id throws Error - JobServices. <br/><br/>
    Simlar Tests for `JobController` & `JobServices` by using stubs for dependencies. <br/>
